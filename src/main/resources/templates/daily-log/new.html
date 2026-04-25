@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form th:action="@{/daily-log}" method="post" th:object="${dailyLogForm}">
+	<div>
+		<label>日付</label>
+		<input type="date" th:field="*{logDate}">
+	</div>
+	<div>
+		<label>体重</label>
+		<input type="number" step="0.01" th:field="*{weightKg}">
+	</div>
+	<div>
+		<label>睡眠時間</label>
+		<input type="number" step="0.1" th:field="*{sleepHours}">
+	</div>
+	<div>
+		<label>間食</label>
+		<input type="text" th:field="*{snackType}">
+	</div>
+	
+	<button type="submit">登録</button>
+	
+</form >
+</body>
+</html>

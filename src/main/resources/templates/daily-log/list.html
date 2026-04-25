@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>体重ログ一覧</title>
+</head>
+
+<body>
+	<h1>体重ログ一覧</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>日付</th>
+				<th>体重</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="dailyLog : ${dailyLogs}">
+				<td th:text="${dailyLog.logDate}">2026-03-28</td>
+				<td th:text="${dailyLog.weightKg}">70.0</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>
