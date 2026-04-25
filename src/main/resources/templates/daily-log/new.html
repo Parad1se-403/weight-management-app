@@ -5,14 +5,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<p class="form-note">
+	    ※ 日付と体重は必須です。
+	</p>
 <form th:action="@{/daily-log}" method="post" th:object="${dailyLogForm}">
 	<div>
 		<label>日付</label>
-		<input type="date" th:field="*{logDate}">
+		<input type="date" th:field="*{logDate}" required>
 	</div>
 	<div>
 		<label>体重</label>
-		<input type="number" step="0.01" th:field="*{weightKg}">
+		<input type="number" step="0.01" th:field="*{weightKg}" required>
 	</div>
 	<div>
 		<label>睡眠時間</label>

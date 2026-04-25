@@ -38,6 +38,10 @@ public class DailyLogController {
 	@PostMapping("/daily-log")
 	public String submitForm(DailyLog dailyLog) {
 		
+	    if (dailyLog.getLogDate() == null || dailyLog.getWeightKg() == null) {
+	        return "redirect:/daily-log/new?error=logDateRequired";
+	    }
+		
 		dailyLogService.save(dailyLog);
 		
 		return "redirect:/daily-log";
