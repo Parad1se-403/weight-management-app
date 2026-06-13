@@ -15,6 +15,7 @@
 				<th>日付</th>
 				<th>体重</th>
 				<th>編集</th>
+				<th>削除</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -22,6 +23,11 @@
 				<td th:text="${dailyLog.logDate}"></td>
 				<td th:text="${dailyLog.weightKg}"></td>
 				<td><a th:href="@{/daily-log/{logDate}/edit(logDate=${dailyLog.logDate})}">編集</a></td>
+				<td>
+					<form  th:action="@{/daily-log/{logDate}/delete(logDate=${dailyLog.logDate})}" method="post">
+						<button type="submit" onclick="return confirm('削除しますか？')">削除</button>
+					</form>
+				</td>
 			</tr>
 		</tbody>
 	</table>
