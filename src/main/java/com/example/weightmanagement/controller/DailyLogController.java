@@ -67,4 +67,11 @@ public class DailyLogController {
 		
 		return "redirect:/daily-log";
 	}
+	
+	@PostMapping("/daily-log/{logDate}/delete")
+	public String deleteLogDate(@PathVariable("logDate") LocalDate logDate) {
+		dailyLogService.deleteByLogDate(logDate);
+		
+		return "redirect:/daily-log";
+	}
 }

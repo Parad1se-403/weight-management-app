@@ -40,4 +40,8 @@ public class DailyLogService {
 	public DailyLog findByLogDate(LocalDate logDate) {
 		return dailyLogRepository.findById(logDate).orElseThrow();
 	}
+	
+	public void deleteByLogDate(LocalDate logDate) {
+		dailyLogRepository.deleteById(logDate);
+	}
 }
