@@ -1,8 +1,10 @@
 package com.example.weightmanagement.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.weightmanagement.entity.DailyLog;
@@ -32,6 +34,10 @@ public class DailyLogService {
 	}
 	
 	public List<DailyLog> findAll() {
-		return dailyLogRepository.findAll();
+		return dailyLogRepository.findAll(Sort.by(Sort.Direction.DESC, "logDate"));
+	}
+	
+	public DailyLog findByLogDate(LocalDate logDate) {
+		return dailyLogRepository.findById(logDate).orElseThrow();
 	}
 }

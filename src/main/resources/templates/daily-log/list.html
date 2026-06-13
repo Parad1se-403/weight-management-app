@@ -14,12 +14,14 @@
 			<tr>
 				<th>日付</th>
 				<th>体重</th>
+				<th>編集</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="dailyLog : ${dailyLogs}">
-				<td th:text="${dailyLog.logDate}">2026-03-28</td>
-				<td th:text="${dailyLog.weightKg}">70.0</td>
+				<td th:text="${dailyLog.logDate}"></td>
+				<td th:text="${dailyLog.weightKg}"></td>
+				<td><a th:href="@{/daily-log/{logDate}/edit(logDate=${dailyLog.logDate})}">編集</a></td>
 			</tr>
 		</tbody>
 	</table>

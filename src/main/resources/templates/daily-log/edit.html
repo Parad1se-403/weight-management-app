@@ -2,16 +2,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>登録画面</title>
+<title>編集画面</title>
 </head>
 <body>
 	<p class="form-note">
-	    ※ 日付と体重は必須です。
 	</p>
-<form th:action="@{/daily-log}" method="post" th:object="${dailyLogForm}">
+<form th:action="@{/daily-log/{logDate}/edit(logDate=${dailyLogForm.logDate})}" method="post" th:object="${dailyLogForm}">
 	<div>
 		<label>日付</label>
-		<input type="date" th:field="*{logDate}" required>
+		<input type="date" name="logDate" th:value="${dailyLogForm.logDate}" required readonly>
 	</div>
 	<div>
 		<label>体重</label>
@@ -26,7 +25,7 @@
 		<input type="text" th:field="*{snackType}">
 	</div>
 	
-	<button type="submit">登録</button>
+	<button type="submit">更新</button>
 	
 </form >
 </body>

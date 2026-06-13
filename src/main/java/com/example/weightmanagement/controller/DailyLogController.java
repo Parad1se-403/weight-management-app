@@ -1,8 +1,12 @@
 package com.example.weightmanagement.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.weightmanagement.entity.DailyLog;
@@ -43,6 +47,23 @@ public class DailyLogController {
 	    }
 		
 		dailyLogService.save(dailyLog);
+		
+		return "redirect:/daily-log";
+	}
+	
+	@GetMapping("/daily-log/{logDate}/edit")
+	public String showEditForm(@PathVariable LocalDate logDate, Model model) {
+		DailyLog dailyLog = dailyLogService.findByLogDate(logDate);
+		
+		model.addAttribute("dailyLogForm", dailyLog);
+		
+		return "daily-log/edit";
+	}
+	
+	@PostMapping("/daily-log/{logDate}/edit")
+	public String updateForm(@PathVariable("logDate") LocalDate logDate, @ModelAttribute("dailyLogForm") DailyLog dailyLogForm){
+		dailyLogForm.setLogDate(logDate);
+		dailyLogService.save(dailyLogForm);
 		
 		return "redirect:/daily-log";
 	}
