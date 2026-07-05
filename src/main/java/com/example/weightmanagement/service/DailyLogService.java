@@ -8,14 +8,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.weightmanagement.entity.DailyLog;
+import com.example.weightmanagement.mapper.DailyLogMapper;
 import com.example.weightmanagement.repository.DailyLogRepository;
 
 @Service
 public class DailyLogService {
 	private final DailyLogRepository dailyLogRepository;
+	private final DailyLogMapper dailyLogMapper;
 	
-	public DailyLogService(DailyLogRepository dailyLogRepository) {
+	public DailyLogService(DailyLogRepository dailyLogRepository, DailyLogMapper dailyLogMapper) {
 		this.dailyLogRepository = dailyLogRepository;
+		this.dailyLogMapper = dailyLogMapper;
 	}
 	
 	public DailyLog save(DailyLog input) {
@@ -44,4 +47,9 @@ public class DailyLogService {
 	public void deleteByLogDate(LocalDate logDate) {
 		dailyLogRepository.deleteById(logDate);
 	}
+	
+	public List<DailyLog> findByPeriod(LocalDate startDate, LocalDate endDate) {
+		return dailyLogMapper.findByPeriod(startDate, endDate);
+	}
+	
 }

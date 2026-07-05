@@ -9,6 +9,11 @@
 <body>
 	<h1>体重ログ一覧</h1>
 	<a th:href="@{/daily-log/new}">新規登録</a>
+	<form th:action="@{/daily-log/search}" method="get">
+		<input type="date" name="startDate" th:value="${startDate}" required>
+		<input type="date" name="endDate" th:value="${endDate}" required>
+		<button type="submit">検索</button>
+	</form>
 	<table>
 		<thead>
 			<tr>
