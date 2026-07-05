@@ -1,6 +1,7 @@
 package com.example.weightmanagement.controller;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.weightmanagement.entity.DailyLog;
 import com.example.weightmanagement.service.DailyLogService;
@@ -28,6 +30,20 @@ public class DailyLogController {
 
 		model.addAttribute("dailyLogs", dailyLogs);
 
+		return "daily-log/list";
+	}
+	
+	@GetMapping("/daily-log/search")
+	public String searchByPeriod(
+			@RequestParam("startDate") LocalDate startDate,
+			@RequestParam("endDate") LocalDate endDate,
+			Model model) {
+		List<DailyLog> dailyLogs = dailyLogService.findByPeriod(startDate, endDate);
+		
+		model.addAttribute("dailyLogs", dailyLogs);
+		model.addAttribute("startDate", dailyLogs);
+		model.addAttribute("endDate", dailyLogs);
+		
 		return "daily-log/list";
 	}
 	
