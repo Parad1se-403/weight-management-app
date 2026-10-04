@@ -38,8 +38,8 @@ public class DailyLogController {
 	public String searchByPeriod(
 			@RequestParam("startDate") LocalDate startDate,
 			@RequestParam("endDate") LocalDate endDate,
-			@RequestParam("minWeightKg") BigDecimal minWeightKg,
-			@RequestParam("maxWeightKg") BigDecimal maxWeightKg,
+			@RequestParam(value = "minWeightKg", required = false) BigDecimal minWeightKg,
+			@RequestParam(value = "maxWeightKg", required = false) BigDecimal maxWeightKg,
 			Model model) {
 		List<DailyLog> dailyLogs = dailyLogService.findByPeriod(startDate, endDate, minWeightKg, maxWeightKg);
 		
