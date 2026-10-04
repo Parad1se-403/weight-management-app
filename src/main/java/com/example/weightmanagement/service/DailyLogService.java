@@ -3,6 +3,7 @@ package com.example.weightmanagement.service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.math.BigDecimal;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -48,8 +49,8 @@ public class DailyLogService {
 		dailyLogRepository.deleteById(logDate);
 	}
 	
-	public List<DailyLog> findByPeriod(LocalDate startDate, LocalDate endDate) {
-		return dailyLogMapper.findByPeriod(startDate, endDate);
+	public List<DailyLog> findByPeriod(LocalDate startDate, LocalDate endDate, BigDecimal minWeightKg, BigDecimal maxWeightKg) {
+		return dailyLogMapper.findByPeriod(startDate, endDate, minWeightKg, maxWeightKg);
 	}
 	
 }

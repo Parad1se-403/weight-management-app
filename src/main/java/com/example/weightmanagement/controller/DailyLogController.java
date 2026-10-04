@@ -1,5 +1,6 @@
 package com.example.weightmanagement.controller;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -37,8 +38,10 @@ public class DailyLogController {
 	public String searchByPeriod(
 			@RequestParam("startDate") LocalDate startDate,
 			@RequestParam("endDate") LocalDate endDate,
+			@RequestParam("minWeightKg") BigDecimal minWeightKg,
+			@RequestParam("maxWeightKg") BigDecimal maxWeightKg,
 			Model model) {
-		List<DailyLog> dailyLogs = dailyLogService.findByPeriod(startDate, endDate);
+		List<DailyLog> dailyLogs = dailyLogService.findByPeriod(startDate, endDate, minWeightKg, maxWeightKg);
 		
 		model.addAttribute("dailyLogs", dailyLogs);
 		model.addAttribute("startDate", dailyLogs);

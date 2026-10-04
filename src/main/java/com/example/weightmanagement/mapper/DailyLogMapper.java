@@ -1,5 +1,6 @@
 package com.example.weightmanagement.mapper;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,5 +13,7 @@ import com.example.weightmanagement.entity.DailyLog;
 public interface DailyLogMapper {
 	List<DailyLog> findByPeriod(
 			@Param("startDate") LocalDate startDate,
-			@Param("endDate") LocalDate endDate);
+			@Param("endDate") LocalDate endDate,
+			@Param("minWeightKg") BigDecimal minWeightKg, 
+			@Param("maxWeightKg") BigDecimal maxWeightKg);
 }

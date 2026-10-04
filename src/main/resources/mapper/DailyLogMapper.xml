@@ -17,6 +17,12 @@
 		daily_log
 		WHERE
 		log_date BETWEEN #{startDate} AND #{endDate}
+	<if test="minWeightKg != null">
+    	AND weight_kg <![CDATA[>=]]> #{minWeightKg}
+	</if>
+	<if test="maxWeightKg != null">
+    	AND weight_kg <![CDATA[<=]]> #{maxWeightKg}
+	</if>
 		ORDER BY
 		log_date DESC
 	</select>
