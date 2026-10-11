@@ -1,0 +1,16 @@
+.search-condition-row {
+    display: flex;
+	gap: 12px;
+	align-items: center;
+	margin-bottom: 12px;
+}
+
+.condition-label {
+    width: 4em;
+}
+
+.search-condition-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
