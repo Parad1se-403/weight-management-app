@@ -47,7 +47,5 @@ tasks.named("bootRun") {
         server = true
         suspend = true
     }
- bootRun {
     sourceResources sourceSets.main
-}
 }
