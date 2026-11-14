@@ -12,9 +12,14 @@
 </head>
 
 <body>
-	<h1>体重ログ一覧</h1>
-	<a th:href="@{/daily-log/new}">新規登録</a>
-	<button type="button" id="modalOpen">検索条件</button>
+	<main class="page">
+	<div class="page-header">
+		<h1 class="page-title">体重ログ一覧</h1>
+			<div class="page-actions">
+				<a th:href="@{/daily-log/new}" class="page-action-button">新規登録</a>
+				<button type="button" id="modalOpen" class="page-action-button">検索条件</button>
+			</div>
+	</div>
 	<div id="searchConditionModal">
 		<div class="modal-content">
 			<form th:action="@{/daily-log/search}" method="get">
@@ -44,36 +49,38 @@
 					</label>
 				</div>
 				<div class="search-condition-actions">
-					<button type="submit">検索</button>
-					<button type="button" id="modalClose">閉じる</button>
-
+					<button type="submit" class="modal-action-button">検索</button>
+					<button type="button" id="modalClose" class="modal-action-button">閉じる</button>
 				</div>
 
 			</form>
 		</div>
 	</div>
-	<table>
-		<thead>
-			<tr>
-				<th>日付</th>
-				<th>体重</th>
-				<th>編集</th>
-				<th>削除</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="dailyLog : ${dailyLogs}">
-				<td th:text="${dailyLog.logDate}"></td>
-				<td th:text="${dailyLog.weightKg}"></td>
-				<td><a th:href="@{/daily-log/{logDate}/edit(logDate=${dailyLog.logDate})}">編集</a></td>
-				<td>
-					<form th:action="@{/daily-log/{logDate}/delete(logDate=${dailyLog.logDate})}" method="post">
-						<button type="submit" onclick="return confirm('削除しますか？')">削除</button>
-					</form>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="table-scroll">
+		<table class="log-table">
+			<thead>
+				<tr>
+					<th class="edit-column">編集</th>
+					<th class="delete-column">削除</th>
+					<th class="date-column">日付</th>
+					<th class="weight-column">体重</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dailyLog : ${dailyLogs}">
+					<td class="edit-column"><a th:href="@{/daily-log/{logDate}/edit(logDate=${dailyLog.logDate})}" class="table-action-button">編集</a></td>
+					<td class="delete-column">
+						<form th:action="@{/daily-log/{logDate}/delete(logDate=${dailyLog.logDate})}" method="post">
+							<button type="submit" class="table-action-button" onclick="return confirm('削除しますか？')">削除</button>
+						</form>
+					</td>
+					<td class="date-column" th:text="${dailyLog.logDate}"></td>
+					<td class="weight-column" th:text="${dailyLog.weightKg}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</main>
 </body>
 
 </html>
